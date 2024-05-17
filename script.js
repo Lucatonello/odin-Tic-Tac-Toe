@@ -12,12 +12,12 @@ const board = {
 
 const player1 = {
     name: 'player1', 
-    piece: 'x'
+    piece: 'X'
 };
 
 const player2 = {
     name: 'player2',
-    piece: 'o'
+    piece: 'O'
 };
 
 function checkWin(player) {
@@ -39,46 +39,59 @@ function displayBoard() {
     }
 }
 
-function game () {
-    let player1Wins = false;
-    let player2Wins = false;
-
-    while (player1Wins == false && player2Wins == false) {
-        var user1Choice, user2Choice;
-        do {
-            user1Choice = prompt("what square are you going player1?");
-        } while (user1Choice < 1 || user1Choice > 9 || board[user1Choice] !== ' ');
-
-    
-        board[user1Choice] = player1.piece;
-        displayBoard();
-
-        player1Wins = checkWin(player1);
-        if (player1Wins) {
-            console.log(`Tic Tac Toe! ${player1.name} wins!`);
-            break;
-        }
-
-        do {
-            user2Choice = prompt("what square are you going player2?");
-        }  while (user2Choice < 1 || user2Choice > 9 || board[user2Choice] !== ' ');
-
-        board[user2Choice] = player2.piece;
-        console.log(board);
-
-        player2Wins = checkWin(player2);
-        if (player2Wins) {
-            console.log(`Tic Tac Toe! ${player2.name} wins!`);
-            break;
-        }
+function handleClick (event) {
+    const squareId = event.target.id;
+    const currentPlayer = Object.values(board).filter(piece => piece !== ' ').length % 2 === 0 ? player1 : player2;
+    let statusMessage = document.querySelector('.winner');
+    if (board[squareId] !== ' ') {
+        statusMessage.textContent = 'Square already taken!';
+        return;
     }
-    
+
+    board[squareId] = currentPlayer.piece;
+    displayBoard();
+
+    if (checkWin(currentPlayer)) {
+        statusMessage.textContent = `Tic Tac Toe! ${currentPlayer.name} wins!`;
+        resetGame();
+    }
+    else if (isTie()) {
+        statusMessage.textContent = 'Its a tie!';
+    }
+    else {
+        statusMessage.textContent = " ";
+    }
+
 };
 
-function setBoard() {
-    const squares = document.addEventListener('.square');
-    squares.forEach(square => {
-        square.addEventListener9('click', displayBoard)
-    })
+function isTie () {
+    for (let square in board) {
+        if (board[square] == ' ') {
+            return false;
+        }   
+    }
+    return true;
 }
-game();
+
+function initializeGame() {
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+        square.addEventListener('click', handleClick);
+    });
+    displayBoard();
+}
+
+function resetGame () {
+    for (let i = 1; i <= 9; i++) {
+        board[i] = ' ';
+    }
+    displayBoard();
+}
+function changeNames () {
+    let newName1 = document.getElementById('player1Name').value;
+    let newName2 = document.getElementById('player2Name').value;
+
+    player1.name = newName1;
+    player2.name = newName2;
+}
+document.addEventListener('DOMContentLoaded', initializeGame);

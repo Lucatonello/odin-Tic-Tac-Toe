@@ -1,16 +1,29 @@
+body {
+    background: lightblue;
+}
 .container {
-    height: 560px;
+    height: 600px;
     width: 600px;
     background: #292e87;
     margin: 100px auto auto auto;
 }
 .firstRow {
+    display: flex;   
     margin: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 5px;
+}
+.secondRow {
+    display: flex;
+    margin: 20px;
+    margin-top: 0px;
 }
 .button {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-right: 10px;
     width: 100px;
+    background: lightblue;
+    border: 0;
+    border-radius: 5px;
 }
 .board {
     display: grid;
@@ -27,4 +40,28 @@
     justify-content: center;
     align-items: center;
     color: white;
+}
+label {
+    color: lightblue;
+    margin-top: 20px;
+}
+#player2 {
+    margin-left: 28px;
+}
+.reset {
+    margin-left: 170px;
+}
+#change {
+    background: lightblue;
+    border: 0px;
+    border-radius: 5px;
+    margin-top: 6px;
+}
+.winner {
+    color: lightblue;
+    margin-top: 10px;
+    text-align: center;
+}
+hr {
+    margin-bottom: 20px;
 }
