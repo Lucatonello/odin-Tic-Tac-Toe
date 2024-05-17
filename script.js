@@ -33,6 +33,12 @@ function checkWin(player) {
     );
 }
 
+function displayBoard() {
+    for (let i = 1; i <= 9; i++) {
+        document.getElementById(i.toString()).textContent = board[i];
+    }
+}
+
 function game () {
     let player1Wins = false;
     let player2Wins = false;
@@ -45,7 +51,7 @@ function game () {
 
     
         board[user1Choice] = player1.piece;
-        console.log(board);
+        displayBoard();
 
         player1Wins = checkWin(player1);
         if (player1Wins) {
@@ -65,7 +71,14 @@ function game () {
             console.log(`Tic Tac Toe! ${player2.name} wins!`);
             break;
         }
-
-    } 
+    }
+    
 };
+
+function setBoard() {
+    const squares = document.addEventListener('.square');
+    squares.forEach(square => {
+        square.addEventListener9('click', displayBoard)
+    })
+}
 game();

@@ -1,0 +1,30 @@
+.container {
+    height: 560px;
+    width: 600px;
+    background: #292e87;
+    margin: 100px auto auto auto;
+}
+.firstRow {
+    margin: 20px;
+    margin-bottom: 40px;
+}
+.button {
+    margin-top: 20px;
+    width: 100px;
+}
+.board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: 0px 20px 0px 20px;
+}
+.square {
+    display: flex;
+    border: 1px solid white;
+    height: 140px;
+    background-color: rgb(43, 48, 145);
+    font-size: 8em;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
